@@ -16,8 +16,13 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0">
-            <a href="#" className="text-xl font-bold tracking-tighter text-slate-800">
-              Naveen<span className="text-indigo-500">.</span>
+            <a href="#" className="flex items-center gap-3 group">
+              <svg className="w-8 h-8 text-indigo-500 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 19V5l8 14V5h8v10a4 4 0 0 1-8 0" />
+              </svg>
+              <span className="text-xl font-bold tracking-tight text-slate-800">
+                Naveen Joseph
+              </span>
             </a>
           </div>
           

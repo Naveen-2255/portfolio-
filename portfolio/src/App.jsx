@@ -5,7 +5,8 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import CodingProfiles from './components/CodingProfiles';
-import Footer from './components/Footer';
+import Contact from './components/Contact';
+import Connect from './components/Connect';
 
 function App() {
   return (
@@ -17,8 +18,13 @@ function App() {
         <Skills />
         <Projects />
         <CodingProfiles />
+        <Connect />
+        <Contact />
       </main>
-      <Footer />
+      <footer className="py-8 text-center text-sm text-slate-500 bg-white border-t border-slate-200 flex flex-col gap-2">
+        <span>Created with ❤️ by Naveen</span>
+        <span>© {new Date().getFullYear()} Naveen Joseph. All rights reserved.</span>
+      </footer>
     </div>
   );
 }

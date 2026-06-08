@@ -1,5 +1,6 @@
 import React from 'react';
-import { Code, Briefcase, Mail, Phone } from 'lucide-react';
+import { Code, Briefcase, Mail, Link } from 'lucide-react';
+import { FaInstagram, FaTwitter } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -19,17 +20,14 @@ export default function Footer() {
               <Mail className="mr-2" size={18} />
               naveenjosephvadakkel@gmail.com
             </a>
-            <a 
-              href="tel:9895780376" 
-              className="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-white bg-slate-800 hover:bg-slate-900 rounded-full transition-colors shadow-sm"
-            >
-              <Phone className="mr-2" size={18} />
-              9895780376
-            </a>
           </div>
         </div>
 
-        <div className="flex justify-center space-x-8 mb-12">
+        <div className="flex flex-wrap justify-center gap-8 mb-12">
+          <a href="https://linktr.ee/naveenjosephv" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-slate-400 hover:text-indigo-500 transition-colors">
+            <Link size={24} />
+            <span className="font-medium text-base">Linktree</span>
+          </a>
           <a href="https://github.com/Naveen-2255" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-slate-400 hover:text-indigo-500 transition-colors">
             <Code size={24} />
             <span className="font-medium text-base">GitHub</span>
@@ -37,6 +35,14 @@ export default function Footer() {
           <a href="https://www.linkedin.com/in/naveen-joseph-8b122b270" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-slate-400 hover:text-indigo-500 transition-colors">
             <Briefcase size={24} />
             <span className="font-medium text-base">LinkedIn</span>
+          </a>
+          <a href="https://www.instagram.com/nvn_.jsf/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-slate-400 hover:text-indigo-500 transition-colors">
+            <FaInstagram size={24} />
+            <span className="font-medium text-base">Instagram</span>
+          </a>
+          <a href="https://x.com/NaveenJosephv" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-slate-400 hover:text-indigo-500 transition-colors">
+            <FaTwitter size={24} />
+            <span className="font-medium text-base">X / Twitter</span>
           </a>
         </div>
         

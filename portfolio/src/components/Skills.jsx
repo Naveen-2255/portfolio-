@@ -25,8 +25,8 @@ export default function Skills() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
   };
 
   const skills = [
@@ -63,10 +63,10 @@ export default function Skills() {
     <section id="skills" className="py-20 bg-slate-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           className="text-center max-w-2xl mx-auto mb-16 space-y-4"
         >
           <h2 className="text-sm font-semibold tracking-widest text-indigo-500 uppercase">My Skills</h2>
@@ -77,7 +77,7 @@ export default function Skills() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, amount: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-10"
         >
           {skills.map((skillGroup, index) => (
