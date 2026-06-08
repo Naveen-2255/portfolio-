@@ -22,7 +22,7 @@ function App() {
         <Contact />
       </main>
       <footer className="py-8 text-center text-sm text-slate-500 bg-white border-t border-slate-200 flex flex-col gap-2">
-        <span>Created with ❤️ by Naveen</span>
+        <span>Creatively designed and built by Naveen Joseph</span>
         <span>© {new Date().getFullYear()} Naveen Joseph. All rights reserved.</span>
       </footer>
     </div>
