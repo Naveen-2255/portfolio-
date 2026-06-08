@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { FiDownload } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 
 export default function Hero() {
@@ -52,12 +53,27 @@ export default function Hero() {
               <ArrowRight className="ml-2" size={18} />
             </motion.a>
             <motion.a 
-              href="#contact" 
-              whileHover={{ scale: 1.02 }}
+              href="/resume.pdf" 
+              download
+              initial="initial"
+              whileHover="hover"
+              variants={{
+                initial: { scale: 1, boxShadow: "0 0 0px rgba(99, 102, 241, 0)" },
+                hover: { scale: 1.02, boxShadow: "0 4px 20px rgba(99, 102, 241, 0.4)" }
+              }}
               transition={{ duration: 0.2 }}
-              className="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-indigo-500 rounded-full shadow-sm"
+              className="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-indigo-500 bg-transparent border-2 border-indigo-500 hover:bg-indigo-50/50 rounded-full"
             >
-              Contact Me
+              Download Resume
+              <motion.div
+                className="ml-2 flex items-center"
+                variants={{
+                  initial: { y: 0 },
+                  hover: { y: [0, -2, 0, 2, 0], transition: { repeat: Infinity, duration: 1 } }
+                }}
+              >
+                <FiDownload size={18} />
+              </motion.div>
             </motion.a>
           </div>
         </motion.div>
@@ -66,21 +82,44 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="relative mt-10 md:mt-0"
+          className="relative mt-10 md:mt-0 flex items-center justify-center"
         >
-          <motion.div 
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="aspect-square rounded-3xl bg-white flex items-center justify-center shadow-2xl shadow-slate-200/50 overflow-hidden border border-slate-100 relative group"
-          >
-            <img 
-              src="/Me.jpeg" 
-              alt="Naveen Joseph" 
-              className="object-cover w-full h-full rounded-3xl transition-transform duration-700 group-hover:scale-105"
-            />
-          </motion.div>
-          {/* Subtle decorative blob */}
-          <div className="absolute -inset-4 bg-indigo-500/10 blur-3xl rounded-full -z-10 opacity-50 pointer-events-none"></div>
+          <div className="relative w-72 h-72 md:w-80 md:h-80 flex items-center justify-center">
+            {/* Spinning Outer Ring */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+              className="absolute inset-0 z-0"
+            >
+              <svg viewBox="0 0 200 200" className="w-full h-full text-indigo-300/50">
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="98"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeDasharray="8 8"
+                />
+              </svg>
+            </motion.div>
+
+            {/* Profile Picture Container */}
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="relative z-10 w-[85%] h-[85%] rounded-full overflow-hidden shadow-2xl shadow-slate-200/50 bg-white border border-slate-100"
+            >
+              <img 
+                src="/Me.jpeg" 
+                alt="Naveen Joseph" 
+                className="object-cover w-full h-full rounded-full"
+              />
+            </motion.div>
+            
+            {/* Subtle decorative blob */}
+            <div className="absolute inset-0 bg-indigo-500/10 blur-3xl rounded-full -z-10 opacity-50 pointer-events-none scale-125"></div>
+          </div>
         </motion.div>
       </div>
     </section>
