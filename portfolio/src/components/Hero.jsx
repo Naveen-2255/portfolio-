@@ -84,38 +84,13 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           className="relative mt-10 md:mt-0 flex items-center justify-center"
         >
-          <div className="relative w-72 h-72 md:w-80 md:h-80 flex items-center justify-center">
-            {/* Spinning Outer Ring */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              className="absolute inset-0 z-0"
-            >
-              <svg viewBox="0 0 200 200" className="w-full h-full text-indigo-300/50">
-                <circle
-                  cx="100"
-                  cy="100"
-                  r="98"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeDasharray="8 8"
-                />
-              </svg>
-            </motion.div>
-
-            {/* Profile Picture Container */}
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="relative z-10 w-[85%] h-[85%] rounded-full overflow-hidden shadow-2xl shadow-slate-200/50 bg-white border border-slate-100"
-            >
-              <img 
-                src="/Me.jpeg" 
-                alt="Naveen Joseph" 
-                className="object-cover w-full h-full rounded-full"
-              />
-            </motion.div>
+          <div className="relative w-72 h-72 md:w-80 md:h-80 flex items-center justify-center mx-auto">
+            {/* The Profile Picture */}
+            <img 
+              src="/Me.jpeg" 
+              alt="Naveen" 
+              className="w-[85%] aspect-[4/5] rounded-3xl object-cover shadow-xl grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500 ease-in-out cursor-pointer z-10" 
+            />
             
             {/* Subtle decorative blob */}
             <div className="absolute inset-0 bg-indigo-500/10 blur-3xl rounded-full -z-10 opacity-50 pointer-events-none scale-125"></div>

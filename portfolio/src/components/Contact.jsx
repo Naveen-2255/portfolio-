@@ -108,7 +108,7 @@ export default function Contact() {
                 <a 
                   href={item.href} 
                   download={item.download} 
-                  className="text-base font-medium text-indigo-600 hover:text-indigo-700 transition-colors cursor-pointer flex items-center justify-center gap-1 break-all"
+                  className="text-base font-medium text-black hover:text-slate-800 transition-colors cursor-pointer flex items-center justify-center gap-1 break-all"
                 >
                   {item.text}
                 </a>

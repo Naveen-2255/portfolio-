@@ -1,14 +1,6 @@
 import React from 'react';
-import GitHubCalendar from 'react-github-calendar';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
-import 'react-tooltip/dist/react-tooltip.css';
 
 export default function CodingProfiles() {
-  const explicitTheme = {
-    light: ['#f1f5f9', '#c7d2fe', '#818cf8', '#6366f1', '#4f46e5'],
-    dark: ['#f1f5f9', '#c7d2fe', '#818cf8', '#6366f1', '#4f46e5'],
-  };
-
   return (
     <section id="profiles" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="mb-12 text-center md:text-left">
@@ -36,23 +28,11 @@ export default function CodingProfiles() {
 
         {/* Contribution Graph */}
         <div className="overflow-x-auto pb-4 scrollbar-hide relative z-10 w-full flex justify-center md:justify-start">
-          <div className="min-w-max">
-            <GitHubCalendar
-              username="Naveen-2255"
-              blockSize={14}
-              blockMargin={4}
-              theme={explicitTheme}
-              fontSize={14}
-              colorScheme="light"
-              renderBlock={(block, activity) =>
-                React.cloneElement(block, {
-                  'data-tooltip-id': 'react-tooltip',
-                  'data-tooltip-html': `${activity.count} activities on ${activity.date}`,
-                })
-              }
-            />
-            <ReactTooltip id="react-tooltip" />
-          </div>
+          <img 
+            src="https://ghchart.rshah.org/Naveen-2255" 
+            alt="GitHub Contributions" 
+            className="w-full hover:opacity-80 transition-opacity duration-300" 
+          />
         </div>
       </div>
     </section>
