@@ -1,10 +1,12 @@
 import React from 'react';
+import { GitHubCalendar } from 'react-github-calendar';
+
 
 export default function CodingProfiles() {
   return (
     <section id="profiles" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="mb-12 text-center md:text-left">
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight">Coding Profiles</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight">GitHub Contributions</h2>
         <div className="w-20 h-1 bg-indigo-500 mt-4 mx-auto md:mx-0 rounded-full"></div>
       </div>
 
@@ -28,10 +30,9 @@ export default function CodingProfiles() {
 
         {/* Contribution Graph */}
         <div className="overflow-x-auto pb-4 scrollbar-hide relative z-10 w-full flex justify-center md:justify-start">
-          <img 
-            src="https://ghchart.rshah.org/Naveen-2255" 
-            alt="GitHub Contributions" 
-            className="w-full hover:opacity-80 transition-opacity duration-300" 
+          <GitHubCalendar 
+            username="Naveen-2255"
+            transformData={(data) => data.slice(-120)}
           />
         </div>
       </div>

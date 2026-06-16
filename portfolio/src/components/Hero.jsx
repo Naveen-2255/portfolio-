@@ -32,11 +32,12 @@ export default function Hero() {
           className="space-y-8"
         >
           <div className="space-y-4">
-            <h2 className="text-indigo-500 font-medium tracking-wide">Hello, I'm Naveen Joseph</h2>
-            <h1 className="text-5xl md:text-6xl font-bold text-slate-800 tracking-tight leading-tight">
-              CS Student & <br className="hidden md:block" />
-              Full Stack Dev.
+            <h1 className="text-6xl md:text-8xl font-extrabold text-slate-800 tracking-tight leading-tight">
+              Naveen Joseph
             </h1>
+            <h2 className="text-xl md:text-2xl font-medium mt-2 text-slate-500">
+              Full Stack Developer
+            </h2>
             <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
               I'm a computer science student passionate about full-stack development, cybersecurity, and system programming. I enjoy building scalable applications, optimizing performance, and solving challenging problems through code.
             </p>
@@ -89,7 +90,7 @@ export default function Hero() {
             <img 
               src="/Me.jpeg" 
               alt="Naveen" 
-              className="w-[85%] aspect-[4/5] rounded-3xl object-cover shadow-xl grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500 ease-in-out cursor-pointer z-10" 
+              className="w-80 h-80 md:w-[350px] md:h-[350px] rounded-3xl object-cover shadow-2xl grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500 ease-in-out cursor-pointer z-10" 
             />
             
             {/* Subtle decorative blob */}

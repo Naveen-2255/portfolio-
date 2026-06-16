@@ -47,11 +47,14 @@ export default function Contact() {
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
             className="bg-white border border-slate-200 rounded-2xl p-8 md:p-10 shadow-xl"
           >
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form action="https://formsubmit.co/naveenjosephvadakkel@gmail.com" method="POST" className="space-y-6">
+              <input type="hidden" name="_captcha" value="false" />
               <div className="relative">
                 <input 
                   type="text" 
+                  name="name"
                   placeholder="Name" 
+                  required
                   className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all"
                 />
                 <FiUser className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
@@ -59,15 +62,19 @@ export default function Contact() {
               <div className="relative">
                 <input 
                   type="email" 
+                  name="email"
                   placeholder="Email" 
+                  required
                   className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all"
                 />
                 <FiMail className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
               </div>
               <div className="relative">
                 <textarea 
+                  name="message"
                   rows="4"
                   placeholder="Message" 
+                  required
                   className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all resize-none"
                 ></textarea>
                 <FiEdit2 className="absolute right-5 top-5 text-slate-400" size={18} />
@@ -76,6 +83,7 @@ export default function Contact() {
               {/* Submit Button */}
               <div className="pt-4 flex justify-end">
                 <motion.button 
+                  type="submit"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   className="flex items-center gap-3 px-8 py-3.5 bg-indigo-500 hover:bg-indigo-600 text-white font-medium rounded-full shadow-lg shadow-indigo-500/20 transition-all"

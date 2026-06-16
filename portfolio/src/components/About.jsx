@@ -19,10 +19,7 @@ export default function About() {
           
           <div className="prose prose-slate prose-lg text-slate-600 leading-relaxed">
             <p>
-              I am a computer science student passionate about full-stack development, cybersecurity, and system programming. I enjoy building scalable applications and solving complex technical problems through clean and efficient code.
-            </p>
-            <p className="mt-4">
-              I have experience developing modern web applications, backend systems, and interactive user interfaces using contemporary technologies and frameworks. I am continuously learning new tools, optimizing performance, and exploring innovative solutions.
+              Hello! I am a developer who genuinely loves building things that live on the internet. My focus is on creating engaging, accessible, and user-friendly digital experiences. I enjoy turning complex problems into simple, beautiful, and intuitive designs. When I am not at my keyboard, I am usually exploring new tech trends, gaming, or learning my next new skill.
             </p>
           </div>
 
