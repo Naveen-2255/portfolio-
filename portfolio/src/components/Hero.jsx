@@ -33,10 +33,11 @@ export default function Hero() {
         >
           <div className="space-y-4">
             <h1 className="text-6xl md:text-8xl font-extrabold text-slate-800 tracking-tight leading-tight">
-              Naveen Joseph
+              Hello, I'm Naveen Joseph
             </h1>
-            <h2 className="text-xl md:text-2xl font-medium mt-2 text-slate-500">
-              Full Stack Developer
+            <h2 className="text-xl md:text-2xl font-medium text-indigo-500 tracking-wide mt-2">
+              CS Student & <br className="hidden md:block" />
+              Full Stack Dev.
             </h2>
             <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
               I'm a computer science student passionate about full-stack development, cybersecurity, and system programming. I enjoy building scalable applications, optimizing performance, and solving challenging problems through code.
@@ -83,19 +84,21 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="relative mt-10 md:mt-0 flex items-center justify-center"
+          className="relative mt-10 md:mt-0"
         >
-          <div className="relative w-72 h-72 md:w-80 md:h-80 flex items-center justify-center mx-auto">
-            {/* The Profile Picture */}
+          <motion.div 
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="aspect-square rounded-3xl bg-white flex items-center justify-center shadow-2xl shadow-slate-200/50 overflow-hidden border border-slate-100 relative group"
+          >
             <img 
               src="/Me.jpeg" 
-              alt="Naveen" 
-              className="w-80 h-80 md:w-[350px] md:h-[350px] rounded-3xl object-cover shadow-2xl grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500 ease-in-out cursor-pointer z-10" 
+              alt="Naveen Joseph" 
+              className="object-cover w-full h-full rounded-3xl grayscale hover:grayscale-0 transition-all duration-700 ease-in-out cursor-pointer group-hover:scale-105"
             />
-            
-            {/* Subtle decorative blob */}
-            <div className="absolute inset-0 bg-indigo-500/10 blur-3xl rounded-full -z-10 opacity-50 pointer-events-none scale-125"></div>
-          </div>
+          </motion.div>
+          {/* Subtle decorative blob */}
+          <div className="absolute -inset-4 bg-indigo-500/10 blur-3xl rounded-full -z-10 opacity-50 pointer-events-none"></div>
         </motion.div>
       </div>
     </section>
