@@ -33,6 +33,7 @@ export default function CodingProfiles() {
           <GitHubCalendar 
             username="Naveen-2255"
             transformData={(data) => data.slice(-120)}
+            theme={{ light: ['#f1f5f9', '#bae6fd', '#7dd3fc', '#38bdf8', '#0284c7'] }}
           />
         </div>
       </div>

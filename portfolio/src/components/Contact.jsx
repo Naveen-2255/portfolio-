@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiPhone, FiMail, FiMapPin, FiFileText, FiUser, FiEdit2, FiSend } from 'react-icons/fi';
+import { FiPhone, FiMail, FiMapPin, FiFileText, FiUser, FiEdit2, FiSend, FiCheckCircle } from 'react-icons/fi';
 import { FaGithub, FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { Link as LinkIcon } from 'lucide-react';
 
 export default function Contact() {
+  const [status, setStatus] = useState('idle');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/naveenjosephvadakkel@gmail.com', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        form.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
   const infoItems = [
     { icon: <FiPhone />, label: 'Call', text: '+91 9895780376' },
     { icon: <FiMail />, label: 'Email', text: 'naveenjosephvadakkel@gmail.com' },
@@ -47,52 +76,76 @@ export default function Contact() {
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
             className="bg-white border border-slate-200 rounded-2xl p-8 md:p-10 shadow-xl"
           >
-            <form action="https://formsubmit.co/naveenjosephvadakkel@gmail.com" method="POST" className="space-y-6">
-              <input type="hidden" name="_captcha" value="false" />
-              <div className="relative">
-                <input 
-                  type="text" 
-                  name="name"
-                  placeholder="Name" 
-                  required
-                  className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all"
-                />
-                <FiUser className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-              </div>
-              <div className="relative">
-                <input 
-                  type="email" 
-                  name="email"
-                  placeholder="Email" 
-                  required
-                  className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all"
-                />
-                <FiMail className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-              </div>
-              <div className="relative">
-                <textarea 
-                  name="message"
-                  rows="4"
-                  placeholder="Message" 
-                  required
-                  className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all resize-none"
-                ></textarea>
-                <FiEdit2 className="absolute right-5 top-5 text-slate-400" size={18} />
-              </div>
-
-              {/* Submit Button */}
-              <div className="pt-4 flex justify-end">
-                <motion.button 
-                  type="submit"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-3 px-8 py-3.5 bg-indigo-500 hover:bg-indigo-600 text-white font-medium rounded-full shadow-lg shadow-indigo-500/20 transition-all"
+            {status === 'success' ? (
+              <div className="flex flex-col items-center justify-center h-full space-y-4 py-12 text-center">
+                <div className="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-2">
+                  <FiCheckCircle size={32} />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-800">✅ Thank you!</h3>
+                <p className="text-slate-600">Your message has been sent successfully.</p>
+                <button 
+                  onClick={() => setStatus('idle')}
+                  className="mt-6 text-indigo-500 font-medium hover:text-indigo-600 underline"
                 >
-                  Send Message
-                  <FiSend size={16} />
-                </motion.button>
+                  Send another message
+                </button>
               </div>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <input type="hidden" name="_captcha" value="false" />
+                <div className="relative">
+                  <input 
+                    type="text" 
+                    name="name"
+                    placeholder="Name" 
+                    required
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all"
+                  />
+                  <FiUser className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                </div>
+                <div className="relative">
+                  <input 
+                    type="email" 
+                    name="email"
+                    placeholder="Email" 
+                    required
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all"
+                  />
+                  <FiMail className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                </div>
+                <div className="relative">
+                  <textarea 
+                    name="message"
+                    rows="4"
+                    placeholder="Message" 
+                    required
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all resize-none"
+                  ></textarea>
+                  <FiEdit2 className="absolute right-5 top-5 text-slate-400" size={18} />
+                </div>
+
+                {/* Submit Button */}
+                <div className="pt-4 flex justify-end">
+                  <motion.button 
+                    type="submit"
+                    disabled={status === 'sending'}
+                    whileHover={status !== 'sending' ? { y: -2 } : {}}
+                    whileTap={status !== 'sending' ? { scale: 0.98 } : {}}
+                    className={`flex items-center gap-3 px-8 py-3.5 text-white font-medium rounded-full shadow-lg transition-all ${
+                      status === 'sending' 
+                        ? 'bg-indigo-400 cursor-not-allowed shadow-none' 
+                        : 'bg-indigo-500 hover:bg-indigo-600 shadow-indigo-500/20'
+                    }`}
+                  >
+                    {status === 'sending' ? 'Sending...' : 'Send Message'}
+                    {status !== 'sending' && <FiSend size={16} />}
+                  </motion.button>
+                </div>
+                {status === 'error' && (
+                  <p className="text-red-500 text-sm text-center mt-4">Failed to send message. Please try again.</p>
+                )}
+              </form>
+            )}
           </motion.div>
 
         </div>
