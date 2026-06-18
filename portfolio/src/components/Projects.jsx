@@ -1,6 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ExternalLink, Code } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+const ImageCarousel = ({ images, title }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (!images || images.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [images]);
+
+  return (
+    <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+      {images.map((img, i) => (
+        <img
+          key={i}
+          src={img}
+          alt={`${title} - image ${i + 1}`}
+          className={`absolute inset-0 object-cover w-full h-full transition-all duration-1000 ${
+            i === currentIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+          }`}
+        />
+      ))}
+      <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition-colors duration-300"></div>
+    </div>
+  );
+};
 
 export default function Projects() {
   const containerVariants = {
@@ -26,9 +54,9 @@ export default function Projects() {
         "Hybrid 'Chain-of-Thought' architecture to prevent AI visual hallucinations using actual game logs.",
         "Robust React frontend for managing complex asynchronous loading states."
       ],
-      image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2940&auto=format&fit=crop',
+      images: ['/img1.png', '/img2.png', '/img3.png', '/img4.png'],
       tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Gemini 1.5 AI', 'REST APIs'],
-      liveLink: '#',
+      liveLink: 'https://valo-coach-umber.vercel.app',
       githubLink: '#'
     },
     {
@@ -68,14 +96,18 @@ export default function Projects() {
               variants={itemVariants}
               className="group flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition-colors duration-300"></div>
-              </div>
+              {project.images ? (
+                <ImageCarousel images={project.images} title={project.title} />
+              ) : (
+                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition-colors duration-300"></div>
+                </div>
+              )}
               
               <div className="flex-1 p-8 flex flex-col">
                 <h4 className="text-xl font-bold text-slate-800 mb-3">{project.title}</h4>
