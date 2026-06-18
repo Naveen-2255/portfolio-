@@ -18,6 +18,20 @@ export default function Projects() {
 
   const projects = [
     {
+      title: 'Valorant AI Coach & Analytics Dashboard',
+      description: "A hybrid analytics dashboard and AI coaching tool. Fetches live Riot Games match data and pairs it with Google's Gemini Vision AI to provide competitive players with contextual, timestamped VOD reviews and statistical macro-coaching.",
+      features: [
+        "Live Data Aggregation via HenrikDev API for advanced metrics.",
+        "Multimodal AI VOD Analysis using Gemini Vision for crosshair/positioning review.",
+        "Hybrid 'Chain-of-Thought' architecture to prevent AI visual hallucinations using actual game logs.",
+        "Robust React frontend for managing complex asynchronous loading states."
+      ],
+      image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2940&auto=format&fit=crop',
+      tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Gemini 1.5 AI', 'REST APIs'],
+      liveLink: '#',
+      githubLink: '#'
+    },
+    {
       title: 'SPARE (Smart Parts Availability & Repair Engine)',
       description: 'A location-based mobile application that connects two-wheeler riders with local mechanics and spare parts retailers. It features real-time inventory tracking, GPS-enabled nearest mechanic discovery, an offline SOS emergency SMS system, and DIY repair video integration.',
       image: '/app.jpeg',
@@ -65,9 +79,18 @@ export default function Projects() {
               
               <div className="flex-1 p-8 flex flex-col">
                 <h4 className="text-xl font-bold text-slate-800 mb-3">{project.title}</h4>
-                <p className="text-slate-600 mb-6 flex-1 line-clamp-4 leading-relaxed">
-                  {project.description}
-                </p>
+                <div className="flex-1">
+                  <p className="text-slate-600 mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+                  {project.features && (
+                    <ul className="list-disc list-inside text-sm text-slate-600 mb-6 space-y-1">
+                      {project.features.map((feature, i) => (
+                        <li key={i}>{feature}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
                 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag, i) => (
