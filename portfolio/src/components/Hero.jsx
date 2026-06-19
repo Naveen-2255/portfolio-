@@ -91,10 +91,11 @@ export default function Hero() {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="aspect-square rounded-3xl bg-white flex items-center justify-center shadow-2xl shadow-slate-200/50 overflow-hidden border border-slate-100 relative group"
           >
-            <img 
+            <motion.img 
               src="/Me.jpeg" 
               alt="Naveen Joseph" 
-              className="object-cover w-full h-full rounded-3xl grayscale hover:grayscale-0 transition-all duration-700 ease-in-out cursor-pointer group-hover:scale-105"
+              whileTap={{ scale: 0.95 }}
+              className="object-cover w-full h-full rounded-3xl grayscale-0 md:grayscale hover:grayscale-0 transition-all duration-500 ease-in-out cursor-pointer group-hover:scale-105"
             />
           </motion.div>
           {/* Subtle decorative blob */}
