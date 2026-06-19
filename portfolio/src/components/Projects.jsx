@@ -56,7 +56,7 @@ export default function Projects() {
       ],
       images: ['/img1.png', '/img2.png', '/img3.png', '/img4.png'],
       tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Gemini 1.5 AI', 'REST APIs'],
-      liveLink: 'https://valo-coach-umber.vercel.app',
+      liveLink: 'https://valo-ai-coach.nj269989.workers.dev/',
       githubLink: '#'
     },
     {
@@ -88,13 +88,13 @@ export default function Projects() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+          className="flex flex-wrap justify-center items-stretch gap-8 max-w-6xl mx-auto"
         >
           {projects.map((project, index) => (
             <motion.div 
               key={index} 
               variants={itemVariants}
-              className="group flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-lg transition-shadow duration-300"
+              className="w-full sm:w-[48%] lg:w-[400px] flex flex-col group bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-lg transition-shadow duration-300 text-left"
             >
               {project.images ? (
                 <ImageCarousel images={project.images} title={project.title} />

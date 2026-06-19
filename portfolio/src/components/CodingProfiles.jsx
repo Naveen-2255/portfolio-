@@ -6,7 +6,7 @@ export default function CodingProfiles() {
   return (
     <section id="profiles" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="mb-12 text-center md:text-left">
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight">GitHub Contributions</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight">My GitHub Collaborations</h2>
         <div className="w-20 h-1 bg-indigo-500 mt-4 mx-auto md:mx-0 rounded-full"></div>
       </div>
 
@@ -19,7 +19,7 @@ export default function CodingProfiles() {
               </svg>
             </div>
             <div>
-              <h3 className="text-slate-800 font-semibold text-lg">GitHub Contributions</h3>
+              <h3 className="text-slate-800 font-semibold text-lg">My GitHub Collaborations</h3>
               <p className="text-slate-500 text-sm">Real-time stats from GitHub</p>
             </div>
           </div>
@@ -29,12 +29,17 @@ export default function CodingProfiles() {
         </div>
 
         {/* Contribution Graph */}
-        <div className="overflow-x-auto pb-4 scrollbar-hide relative z-10 w-full flex justify-center md:justify-start">
-          <GitHubCalendar 
-            username="Naveen-2255"
-            transformData={(data) => data.slice(-120)}
-            theme={{ light: ['#f1f5f9', '#bae6fd', '#7dd3fc', '#38bdf8', '#0284c7'] }}
-          />
+        <div className="w-full flex justify-center items-center py-8 overflow-x-auto">
+          <div className="min-w-max">
+            <GitHubCalendar 
+              username="Naveen-2255" 
+              blockSize={14}
+              blockMargin={5}
+              colorScheme="light"
+              color="#0284c7"
+              transformData={(data) => data.slice(-120)}
+            />
+          </div>
         </div>
       </div>
     </section>
