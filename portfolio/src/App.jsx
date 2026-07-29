@@ -1,30 +1,29 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Skills from './components/Skills';
 import Projects from './components/Projects';
-import CodingProfiles from './components/CodingProfiles';
+import Experience from './components/Experience';
+import GitHubActivity from './components/GitHubActivity';
 import Contact from './components/Contact';
-import Connect from './components/Connect';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 selection:bg-indigo-100 selection:text-indigo-900">
-      <Navbar />
-      <main className="flex-grow">
+    <div className="min-h-screen bg-[#f8f5f2] text-black font-sans selection:bg-yellow-300 selection:text-black">
+      {/* Responsive Retro OS Navigation */}
+      <Sidebar />
+
+      {/* Main Content Area - Scrollable on right for desktop */}
+      <main className="md:ml-64 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-5xl mx-auto space-y-8 pb-20 md:pb-8">
         <Hero />
         <About />
-        <Skills />
         <Projects />
-        <CodingProfiles />
-        <Connect />
+        <Experience />
+        <GitHubActivity />
         <Contact />
+        <Footer />
       </main>
-      <footer className="py-8 text-center text-sm text-slate-500 bg-white border-t border-slate-200 flex flex-col gap-2">
-        <span>Creatively designed and built by Naveen Joseph</span>
-        <span>© {new Date().getFullYear()} Naveen Joseph. All rights reserved.</span>
-      </footer>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, Code } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ExternalLink, Code, Folder, ChevronRight } from 'lucide-react';
+import OSWindow from './OSWindow';
 
 const ImageCarousel = ({ images, title }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -14,141 +14,181 @@ const ImageCarousel = ({ images, title }) => {
   }, [images]);
 
   return (
-    <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+    <div className="relative aspect-[16/10] overflow-hidden bg-slate-200 border-b-2 border-black">
       {images.map((img, i) => (
         <img
           key={i}
           src={img}
           alt={`${title} - image ${i + 1}`}
-          className={`absolute inset-0 object-cover w-full h-full transition-all duration-1000 ${
-            i === currentIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+          className={`absolute inset-0 object-cover w-full h-full transition-opacity duration-500 ${
+            i === currentIndex ? 'opacity-100' : 'opacity-0'
           }`}
         />
       ))}
-      <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition-colors duration-300"></div>
+      <div className="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[10px] px-1.5 py-0.5 border border-white">
+        {currentIndex + 1}/{images.length}
+      </div>
     </div>
   );
 };
 
 export default function Projects() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
-  };
-
   const projects = [
     {
       title: 'Valorant AI Coach & Analytics Dashboard',
-      description: "A hybrid analytics dashboard and AI coaching tool. Fetches live Riot Games match data and pairs it with Google's Gemini Vision AI to provide competitive players with contextual, timestamped VOD reviews and statistical macro-coaching.",
+      description: "A hybrid analytics dashboard and AI coaching tool pairing Riot Games match data with Google's Gemini Vision AI for contextual VOD reviews.",
       features: [
-        "Live Data Aggregation via HenrikDev API for advanced metrics.",
-        "Multimodal AI VOD Analysis using Gemini Vision for crosshair/positioning review.",
-        "Hybrid 'Chain-of-Thought' architecture to prevent AI visual hallucinations using actual game logs.",
-        "Robust React frontend for managing complex asynchronous loading states."
+        "Live Data Aggregation via HenrikDev API",
+        "Multimodal AI VOD Analysis with Gemini Vision",
+        "Chain-of-Thought architecture for game metrics"
       ],
       images: ['/img1.png', '/img2.png', '/img3.png', '/img4.png'],
-      tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Gemini 1.5 AI', 'REST APIs'],
+      tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Gemini 1.5 AI'],
       liveLink: 'https://valo-ai-coach.nj269989.workers.dev/',
       githubLink: '#'
     },
     {
-      title: 'SPARE (Smart Parts Availability & Repair Engine)',
-      description: 'A location-based mobile application that connects two-wheeler riders with local mechanics and spare parts retailers. It features real-time inventory tracking, GPS-enabled nearest mechanic discovery, an offline SOS emergency SMS system, and DIY repair video integration.',
+      title: 'SPARE (Smart Parts Availability Engine)',
+      description: 'Location-based mobile app connecting two-wheeler riders with mechanics and spare parts retailers with real-time tracking.',
+      features: [
+        "Real-time inventory tracking",
+        "GPS-enabled mechanic discovery",
+        "Offline SOS emergency SMS system"
+      ],
       image: '/app.jpeg',
-      tags: ['React Native', 'Expo', 'Firebase', 'OpenStreetMap API', 'Expo Location'],
+      tags: ['React Native', 'Firebase', 'OpenStreetMap'],
       liveLink: '',
       githubLink: 'https://github.com/Naveen-2255/SPARE'
+    },
+    {
+      title: 'HealthStory AI',
+      description: 'Accessibility-first healthcare platform transforming complex handwritten medical prescriptions into localized Malayalam audio stories ("Kissas") and real-time edge AI emergency triage.',
+      features: [
+        "Vision OCR for handwritten prescriptions via Google Gemini Vision API",
+        "Privacy-first Edge AI & Kissa drama generation using Google Gemma 4 on Ollama",
+        "Indic Malayalam voice narration & automatic 108 ambulance dispatch triage"
+      ],
+      images: ['/healthstory1.png', '/healthstory2.png', '/healthstory3.png', '/healthstory4.png', '/healthstory5.png'],
+      tags: ['React 19', 'Gemini Vision', 'Gemma 4 (Edge AI)', 'Google TTS', 'Node.js', 'Express'],
+      liveLink: '',
+      githubLink: 'https://github.com/Naveen-2255'
     }
   ];
 
   return (
-    <section id="projects" className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center max-w-2xl mx-auto mb-16 space-y-4"
-        >
-          <h2 className="text-sm font-semibold tracking-widest text-indigo-500 uppercase">Featured Work</h2>
-          <h3 className="text-3xl font-bold text-slate-800 tracking-tight">Some projects I've built</h3>
-        </motion.div>
+    <section id="projects" className="scroll-mt-6">
+      <OSWindow 
+        path="C:\> projects.exe" 
+        bodyClassName="p-6 md:p-10"
+      >
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <div>
+            <h2 className="text-3xl font-extrabold uppercase tracking-tight text-black">
+              PROJECTS
+            </h2>
+            <p className="font-mono text-xs text-slate-600 mt-1">
+              Select a project to inspect source code and live demos
+            </p>
+          </div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="flex flex-wrap justify-center items-stretch gap-8 max-w-6xl mx-auto"
-        >
+          <a 
+            href="https://github.com/Naveen-2255" 
+            target="_blank" 
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-black hover:underline bg-stone-100 border border-black px-3 py-1.5 hard-shadow-sm"
+          >
+            View all projects <ChevronRight size={14} />
+          </a>
+        </div>
+
+        {/* Project Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <motion.div 
+            <div 
               key={index} 
-              variants={itemVariants}
-              className="w-full sm:w-[48%] lg:w-[400px] flex flex-col group bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-lg transition-shadow duration-300 text-left"
+              className="border-2 border-black hard-shadow bg-white flex flex-col justify-between overflow-hidden group hover:translate-y-[-2px] transition-transform"
             >
-              {project.images ? (
-                <ImageCarousel images={project.images} title={project.title} />
-              ) : (
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition-colors duration-300"></div>
-                </div>
-              )}
-              
-              <div className="flex-1 p-8 flex flex-col">
-                <h4 className="text-xl font-bold text-slate-800 mb-3">{project.title}</h4>
-                <div className="flex-1">
-                  <p className="text-slate-600 mb-4 leading-relaxed">
+              <div>
+                {/* Media Header */}
+                {project.images ? (
+                  <ImageCarousel images={project.images} title={project.title} />
+                ) : (
+                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 border-b-2 border-black">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                )}
+
+                {/* Card Content */}
+                <div className="p-5 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <Folder size={16} className="text-[#3f4d34]" />
+                    <h3 className="font-bold font-sans text-base text-black leading-snug line-clamp-2">
+                      {project.title}
+                    </h3>
+                  </div>
+
+                  <p className="text-xs text-slate-700 leading-relaxed font-sans line-clamp-3">
                     {project.description}
                   </p>
+
+                  {/* Feature Highlights */}
                   {project.features && (
-                    <ul className="list-disc list-inside text-sm text-slate-600 mb-6 space-y-1">
+                    <ul className="space-y-1 pt-1 border-t border-dashed border-slate-300">
                       {project.features.map((feature, i) => (
-                        <li key={i}>{feature}</li>
+                        <li key={i} className="text-[11px] text-slate-600 font-sans flex items-start gap-1.5 leading-snug">
+                          <span className="text-[#3f4d34] font-bold shrink-0">•</span>
+                          <span className="line-clamp-1">{feature}</span>
+                        </li>
                       ))}
                     </ul>
                   )}
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tags.map((tag, i) => (
-                    <span key={i} className="text-xs font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
-                  {project.liveLink && (
-                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-700 transition-colors">
-                      <ExternalLink size={16} className="mr-1.5" /> Live Demo
-                    </a>
-                  )}
-                  {project.githubLink && (
-                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm font-medium text-slate-600 hover:text-slate-800 transition-colors">
-                      <Code size={16} className="mr-1.5" /> Code
-                    </a>
-                  )}
+
+                  {/* Tech badges */}
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {project.tags.map((tag, i) => (
+                      <span 
+                        key={i} 
+                        className="text-[10px] font-mono font-semibold bg-[#f8f5f2] border border-black px-2 py-0.5"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </motion.div>
+
+              {/* Action Footer */}
+              <div className="p-4 border-t-2 border-black bg-stone-50 flex items-center justify-between gap-2">
+                {project.liveLink && (
+                  <a 
+                    href={project.liveLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-1 font-mono text-xs font-bold bg-[#3f4d34] text-white border border-black px-2.5 py-1 hover:bg-[#2e3927] transition-colors"
+                  >
+                    <ExternalLink size={12} /> Live Demo
+                  </a>
+                )}
+                {project.githubLink && (
+                  <a 
+                    href={project.githubLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-1 font-mono text-xs font-bold bg-white text-black border border-black px-2.5 py-1 hover:bg-slate-100 transition-colors"
+                  >
+                    <Code size={12} /> &gt; view project
+                  </a>
+                )}
+              </div>
+
+            </div>
           ))}
-        </motion.div>
-      </div>
+        </div>
+      </OSWindow>
     </section>
   );
 }

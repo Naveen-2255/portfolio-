@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FiPhone, FiMail, FiMapPin, FiFileText, FiUser, FiEdit2, FiSend, FiCheckCircle } from 'react-icons/fi';
-import { FaGithub, FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa';
-import { Link as LinkIcon } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import OSWindow from './OSWindow';
 
 export default function Contact() {
   const [status, setStatus] = useState('idle');
@@ -34,153 +33,149 @@ export default function Contact() {
     }
   };
 
-  const infoItems = [
-    { icon: <FiPhone />, label: 'Call', text: '+91 9895780376' },
-    { icon: <FiMail />, label: 'Email', text: 'naveenjosephvadakkel@gmail.com' },
-    { icon: <FiMapPin />, label: 'Location', text: 'Mundakayam, Kerala' },
-    { icon: <FiFileText />, label: 'Resume', text: 'Download PDF', href: '/resume.pdf', download: 'Naveen_Joseph_Resume.pdf' }
-  ];
-
   return (
-    <section id="contact" className="py-24 bg-slate-50 border-t border-slate-200/50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Split Layout - Send Message Form */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-24">
+    <section id="contact" className="scroll-mt-6">
+      <OSWindow 
+        path="C:\> contact.exe" 
+        bodyClassName="p-6 md:p-10 relative"
+      >
+        <h2 className="text-3xl font-extrabold uppercase tracking-tight text-black mb-8">
+          CONTACT
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Side */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          >
-            <div className="text-indigo-500 font-mono text-sm mb-6 tracking-widest flex items-center gap-4">
-              <div className="h-[1px] w-8 bg-indigo-500/30"></div>
-              <span>CONTACT</span>
+          {/* Yellow Sticky Note pinned to screen (Left Column) */}
+          <div className="lg:col-span-5">
+            <div className="bg-[#fef08a] border-2 border-black hard-shadow p-6 sm:p-8 font-sans rotate-[-1.5deg] relative">
+              {/* Tape Graphic */}
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-amber-200/80 border border-black/40 rotate-1 opacity-90 shadow-xs"></div>
+              
+              <h3 className="font-serif italic text-2xl sm:text-3xl font-bold text-black leading-snug my-4">
+                "Let's build something amazing together."
+              </h3>
+              <p className="font-mono text-right font-bold text-sm text-slate-800 mt-6">
+                — NJ
+              </p>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 leading-tight mb-6">
-              Send Me<br />
-              <span className="text-indigo-500">a Message.</span>
-            </h2>
-            <p className="text-slate-600 text-lg max-w-md leading-relaxed mb-10">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Reach out and let's build something amazing together.
-            </p>
-          </motion.div>
+          </div>
 
-          {/* Right Side - Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className="bg-white border border-slate-200 rounded-2xl p-8 md:p-10 shadow-xl"
-          >
-            {status === 'success' ? (
-              <div className="flex flex-col items-center justify-center h-full space-y-4 py-12 text-center">
-                <div className="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-2">
-                  <FiCheckCircle size={32} />
+          {/* Contact Details & Form (Right Column) */}
+          <div className="lg:col-span-7 space-y-6">
+            
+            {/* Direct Info List */}
+            <div className="border-2 border-black hard-shadow-sm bg-stone-50 p-4 space-y-3 font-mono text-xs sm:text-sm">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-[#3f4d34] text-white border border-black shrink-0">
+                  <Mail size={16} />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800">✅ Thank you!</h3>
-                <p className="text-slate-600">Your message has been sent successfully.</p>
-                <button 
-                  onClick={() => setStatus('idle')}
-                  className="mt-6 text-indigo-500 font-medium hover:text-indigo-600 underline"
-                >
-                  Send another message
-                </button>
+                <span className="font-semibold text-black break-all">naveenjosephvadakkel@gmail.com</span>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <input type="hidden" name="_captcha" value="false" />
-                <div className="relative">
-                  <input 
-                    type="text" 
-                    name="name"
-                    placeholder="Name" 
-                    required
-                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all"
-                  />
-                  <FiUser className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                </div>
-                <div className="relative">
-                  <input 
-                    type="email" 
-                    name="email"
-                    placeholder="Email" 
-                    required
-                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all"
-                  />
-                  <FiMail className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                </div>
-                <div className="relative">
-                  <textarea 
-                    name="message"
-                    rows="4"
-                    placeholder="Message" 
-                    required
-                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 transition-all resize-none"
-                  ></textarea>
-                  <FiEdit2 className="absolute right-5 top-5 text-slate-400" size={18} />
-                </div>
 
-                {/* Submit Button */}
-                <div className="pt-4 flex justify-end">
-                  <motion.button 
-                    type="submit"
-                    disabled={status === 'sending'}
-                    whileHover={status !== 'sending' ? { y: -2 } : {}}
-                    whileTap={status !== 'sending' ? { scale: 0.98 } : {}}
-                    className={`flex items-center gap-3 px-8 py-3.5 text-white font-medium rounded-full shadow-lg transition-all ${
-                      status === 'sending' 
-                        ? 'bg-indigo-400 cursor-not-allowed shadow-none' 
-                        : 'bg-indigo-500 hover:bg-indigo-600 shadow-indigo-500/20'
-                    }`}
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-[#3f4d34] text-white border border-black shrink-0">
+                  <Phone size={16} />
+                </div>
+                <span className="font-semibold text-black">+91 9895780376</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-[#3f4d34] text-white border border-black shrink-0">
+                  <MapPin size={16} />
+                </div>
+                <span className="font-semibold text-black">Kerala, India</span>
+              </div>
+            </div>
+
+            {/* Interactive Form */}
+            <div className="border-2 border-black hard-shadow bg-white p-6">
+              {status === 'success' ? (
+                <div className="text-center py-6 space-y-3 font-mono">
+                  <CheckCircle size={36} className="text-[#3f4d34] mx-auto" />
+                  <h4 className="font-bold text-lg text-black">Message Received!</h4>
+                  <p className="text-xs text-slate-600">I will get back to you shortly.</p>
+                  <button 
+                    onClick={() => setStatus('idle')}
+                    className="mt-2 text-xs font-bold underline uppercase"
                   >
-                    {status === 'sending' ? 'Sending...' : 'Send Message'}
-                    {status !== 'sending' && <FiSend size={16} />}
-                  </motion.button>
+                    Send another
+                  </button>
                 </div>
-                {status === 'error' && (
-                  <p className="text-red-500 text-sm text-center mt-4">Failed to send message. Please try again.</p>
-                )}
-              </form>
-            )}
-          </motion.div>
-
-        </div>
-
-        {/* Info Grid (Moved below Form) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {infoItems.map((item, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
-              className="flex flex-col items-center text-center space-y-4"
-            >
-              <div className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-indigo-500 shadow-sm mb-1">
-                {React.cloneElement(item.icon, { size: 20 })}
-              </div>
-              <p className="text-xs font-semibold tracking-wider text-slate-500 uppercase">{item.label}</p>
-              {item.href ? (
-                <a 
-                  href={item.href} 
-                  download={item.download} 
-                  className="text-base font-medium text-black hover:text-slate-800 transition-colors cursor-pointer flex items-center justify-center gap-1 break-all"
-                >
-                  {item.text}
-                </a>
               ) : (
-                <p className="text-base font-medium text-slate-800 break-all">{item.text}</p>
-              )}
-            </motion.div>
-          ))}
-        </div>
+                <form onSubmit={handleSubmit} className="space-y-4 font-mono text-xs">
+                  <input type="hidden" name="_captcha" value="false" />
+                  
+                  <div>
+                    <label className="block font-bold text-black mb-1 uppercase">Name:</label>
+                    <input 
+                      type="text" 
+                      name="name" 
+                      required 
+                      placeholder="Enter your name" 
+                      className="w-full bg-[#f8f5f2] border-2 border-black p-2.5 font-sans text-sm focus:bg-white focus:outline-none"
+                    />
+                  </div>
 
-      </div>
+                  <div>
+                    <label className="block font-bold text-black mb-1 uppercase">Email:</label>
+                    <input 
+                      type="email" 
+                      name="email" 
+                      required 
+                      placeholder="Enter your email address" 
+                      className="w-full bg-[#f8f5f2] border-2 border-black p-2.5 font-sans text-sm focus:bg-white focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-black mb-1 uppercase">Message:</label>
+                    <textarea 
+                      name="message" 
+                      rows="3" 
+                      required 
+                      placeholder="Type your message here..." 
+                      className="w-full bg-[#f8f5f2] border-2 border-black p-2.5 font-sans text-sm focus:bg-white focus:outline-none resize-none"
+                    ></textarea>
+                  </div>
+
+                  <div className="flex justify-between items-center pt-2">
+                    <div className="flex gap-2">
+                      <a 
+                        href="https://github.com/Naveen-2255" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="p-2 border border-black bg-white hover:bg-slate-100"
+                        title="GitHub"
+                      >
+                        <FaGithub size={14} />
+                      </a>
+                      <a 
+                        href="https://linkedin.com" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="p-2 border border-black bg-white hover:bg-slate-100"
+                        title="LinkedIn"
+                      >
+                        <FaLinkedin size={14} />
+                      </a>
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      disabled={status === 'sending'}
+                      className="inline-flex items-center gap-2 bg-[#3f4d34] text-white border-2 border-black hard-shadow px-5 py-2.5 font-mono text-xs font-bold hover:bg-[#2e3927] transition-all"
+                    >
+                      {status === 'sending' ? 'Sending...' : '> send me a message'} <Send size={12} />
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+
+          </div>
+
+        </div>
+      </OSWindow>
     </section>
   );
 }

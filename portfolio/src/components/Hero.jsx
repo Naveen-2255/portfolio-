@@ -1,107 +1,93 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import { FiDownload } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import OSWindow from './OSWindow';
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      {/* Ambient Background Glow */}
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.1, 1],
-          x: [0, 30, 0]
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 left-0 md:left-1/4 w-[20rem] md:w-[30rem] h-[20rem] md:h-[30rem] bg-indigo-300/20 blur-3xl rounded-full -z-10 pointer-events-none"
-      />
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.2, 1],
-          y: [0, 40, 0]
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-1/4 right-0 md:right-1/4 w-[15rem] md:w-[25rem] h-[15rem] md:h-[25rem] bg-emerald-300/10 blur-3xl rounded-full -z-10 pointer-events-none"
-      />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="space-y-8"
-        >
-          <div className="space-y-4">
-            <h1 className="text-6xl md:text-8xl font-extrabold text-slate-800 tracking-tight leading-tight">
-              Hello, I'm Naveen Joseph
-            </h1>
-            <h2 className="text-xl md:text-2xl font-medium text-indigo-500 tracking-wide mt-2">
-              CS Student & <br className="hidden md:block" />
-              Full Stack Dev.
-            </h2>
-            <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
-              I'm a computer science student passionate about full-stack development, cybersecurity, and system programming. I enjoy building scalable applications, optimizing performance, and solving challenging problems through code.
-            </p>
-          </div>
+    <section id="hero" className="scroll-mt-6">
+      <OSWindow 
+        path="C:\> home.exe" 
+        hasGridBackground={true} 
+        bodyClassName="p-6 md:p-12 relative overflow-hidden"
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          <div className="flex flex-col sm:flex-row gap-4">
-            <motion.a 
-              href="#projects" 
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-              className="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-white bg-indigo-500 hover:bg-indigo-600 rounded-full shadow-sm"
-            >
-              View Work
-              <ArrowRight className="ml-2" size={18} />
-            </motion.a>
-            <motion.a 
-              href="/resume.pdf" 
-              download
-              initial="initial"
-              whileHover="hover"
-              variants={{
-                initial: { scale: 1, boxShadow: "0 0 0px rgba(99, 102, 241, 0)" },
-                hover: { scale: 1.02, boxShadow: "0 4px 20px rgba(99, 102, 241, 0.4)" }
-              }}
-              transition={{ duration: 0.2 }}
-              className="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-indigo-500 bg-transparent border-2 border-indigo-500 hover:bg-indigo-50/50 rounded-full"
-            >
-              Download Resume
-              <motion.div
-                className="ml-2 flex items-center"
-                variants={{
-                  initial: { y: 0 },
-                  hover: { y: [0, -2, 0, 2, 0], transition: { repeat: Infinity, duration: 1 } }
-                }}
+          {/* Main Hero Content */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="font-mono text-sm tracking-wide text-slate-700">
+              Hi, I'm
+            </div>
+
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-black tracking-tight leading-none uppercase">
+              NAVEEN<br />JOSEPH
+            </h1>
+
+            {/* Yellow Highlight Pill requested in rules */}
+            <div className="inline-block bg-[#fef08a] text-black border-2 border-black px-4 py-1.5 font-mono text-sm font-bold hard-shadow-sm rotate-[-1deg]">
+              Computer Science Student
+            </div>
+
+            <div className="space-y-2">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                Full-Stack Developer
+              </h2>
+              <h3 className="text-lg font-semibold text-[#3f4d34] font-mono">
+                AI & Edge Computing Enthusiast
+              </h3>
+            </div>
+
+            <p className="text-base sm:text-lg text-slate-700 max-w-xl leading-relaxed font-sans font-medium">
+              I build secure, scalable and user-friendly applications that solve real-world problems.
+            </p>
+
+            {/* Action Buttons with Retro Brutalist styling */}
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <a 
+                href="#projects" 
+                className="inline-flex items-center gap-2 bg-[#3f4d34] hover:bg-[#2f3927] text-white border-2 border-black hard-shadow px-6 py-3 font-mono text-sm font-bold active:translate-x-0.5 active:translate-y-0.5 transition-all"
               >
-                <FiDownload size={18} />
-              </motion.div>
-            </motion.a>
+                &gt; view my work
+              </a>
+
+              <a 
+                href="#contact" 
+                className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-black border-2 border-black hard-shadow px-6 py-3 font-mono text-sm font-bold active:translate-x-0.5 active:translate-y-0.5 transition-all"
+              >
+                &gt; get in touch
+              </a>
+            </div>
+
+            {/* Retro OS bottom prompt indicator */}
+            <div className="pt-6 hidden sm:block">
+              <div className="inline-block bg-[#3f4d34] text-yellow-300 font-mono text-xs px-2.5 py-1 border border-black hard-shadow-sm font-bold">
+                C:\&gt;
+              </div>
+            </div>
           </div>
-        </motion.div>
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="relative mt-10 md:mt-0"
-        >
-          <motion.div 
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="aspect-square rounded-3xl bg-white flex items-center justify-center shadow-2xl shadow-slate-200/50 overflow-hidden border border-slate-100 relative group"
-          >
-            <motion.img 
-              src="/Me.jpeg" 
-              alt="Naveen Joseph" 
-              whileTap={{ scale: 0.95 }}
-              className="object-cover w-full h-full rounded-3xl grayscale-0 md:grayscale hover:grayscale-0 transition-all duration-500 ease-in-out cursor-pointer group-hover:scale-105"
-            />
-          </motion.div>
-          {/* Subtle decorative blob */}
-          <div className="absolute -inset-4 bg-indigo-500/10 blur-3xl rounded-full -z-10 opacity-50 pointer-events-none"></div>
-        </motion.div>
-      </div>
+
+          {/* Hero Profile Image Card */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-sm">
+              {/* Decorative accent element behind frame */}
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-[#3f4d34] border-2 border-black -z-10"></div>
+              
+              <div className="border-2 border-black hard-shadow bg-white p-3 relative">
+                <img 
+                  src="/Me.jpeg" 
+                  alt="Naveen Joseph" 
+                  className="w-full h-auto aspect-[4/5] object-cover object-top border-2 border-black"
+                />
+                
+                <div className="mt-3 pt-2 border-t border-black flex justify-between items-center font-mono text-xs">
+                  <span className="font-bold">NAVEEN_J.JPG</span>
+                  <span className="bg-amber-100 border border-black px-1.5 py-0.5">DEV_ID: #2255</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </OSWindow>
     </section>
   );
 }

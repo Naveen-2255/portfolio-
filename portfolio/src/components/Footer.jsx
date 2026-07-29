@@ -1,56 +1,78 @@
 import React from 'react';
-import { Code, Briefcase, Mail, Link } from 'lucide-react';
-import { FaInstagram, FaTwitter } from 'react-icons/fa';
+import { Mail, FileText } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import OSWindow from './OSWindow';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer id="contact" className="bg-slate-50 pt-20 pb-10 border-t border-slate-200/50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="mb-12 space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight">Let's work together</h2>
-          <p className="text-lg text-slate-600 max-w-xl mx-auto">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-          </p>
+    <footer id="footer" className="mt-8 mb-16 md:mb-8">
+      <OSWindow 
+        path="C:\> footer.exe" 
+        bodyClassName="p-6 md:p-10"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-8">
           
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a 
-              href="mailto:naveenjosephvadakkel@gmail.com" 
-              className="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-white bg-slate-800 hover:bg-slate-900 rounded-full transition-colors shadow-sm"
-            >
-              <Mail className="mr-2" size={18} />
-              naveenjosephvadakkel@gmail.com
-            </a>
+          {/* Brand Col */}
+          <div className="md:col-span-5 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-black text-white font-mono text-2xl font-bold flex items-center justify-center border-2 border-black hard-shadow-sm">
+                nj
+              </div>
+              <div>
+                <h3 className="font-sans font-bold text-xl text-black">Naveen Joseph</h3>
+                <p className="font-mono text-xs text-slate-600">Building secure. Scalable. Impactful.</p>
+              </div>
+            </div>
           </div>
+
+          {/* Nav Links */}
+          <div className="md:col-span-3 font-mono text-xs space-y-2">
+            <h4 className="font-bold text-black uppercase border-b border-black pb-1">NAVIGATION</h4>
+            <ul className="space-y-1 text-slate-700">
+              <li><a href="#hero" className="hover:underline">Home</a></li>
+              <li><a href="#about" className="hover:underline">About</a></li>
+              <li><a href="#projects" className="hover:underline">Projects</a></li>
+              <li><a href="#experience" className="hover:underline">Experience</a></li>
+              <li><a href="#github" className="hover:underline">GitHub</a></li>
+              <li><a href="#contact" className="hover:underline">Contact</a></li>
+            </ul>
+          </div>
+
+          {/* Resources & Connect */}
+          <div className="md:col-span-4 space-y-4 font-mono text-xs">
+            <div>
+              <h4 className="font-bold text-black uppercase border-b border-black pb-1 mb-2">RESOURCES</h4>
+              <a href="/resume.pdf" download className="inline-flex items-center gap-1 hover:underline text-slate-700 font-semibold">
+                <FileText size={14} /> Resume (PDF)
+              </a>
+            </div>
+
+            <div>
+              <h4 className="font-bold text-black uppercase border-b border-black pb-1 mb-2">CONNECT</h4>
+              <div className="flex gap-2">
+                <a href="https://github.com/Naveen-2255" target="_blank" rel="noreferrer" className="p-2 border border-black bg-white hover:bg-slate-100">
+                  <FaGithub size={16} />
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 border border-black bg-white hover:bg-slate-100">
+                  <FaLinkedin size={16} />
+                </a>
+                <a href="mailto:naveenjosephvadakkel@gmail.com" className="p-2 border border-black bg-white hover:bg-slate-100">
+                  <Mail size={16} />
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8 mb-12">
-          <a href="https://linktr.ee/naveenjosephv" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-slate-400 hover:text-indigo-500 transition-colors">
-            <Link size={24} />
-            <span className="font-medium text-base">Linktree</span>
-          </a>
-          <a href="https://github.com/Naveen-2255" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-slate-400 hover:text-indigo-500 transition-colors">
-            <Code size={24} />
-            <span className="font-medium text-base">GitHub</span>
-          </a>
-          <a href="https://www.linkedin.com/in/naveen-joseph-8b122b270" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-slate-400 hover:text-indigo-500 transition-colors">
-            <Briefcase size={24} />
-            <span className="font-medium text-base">LinkedIn</span>
-          </a>
-          <a href="https://www.instagram.com/nvn_.jsf/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-slate-400 hover:text-indigo-500 transition-colors">
-            <FaInstagram size={24} />
-            <span className="font-medium text-base">Instagram</span>
-          </a>
-          <a href="https://x.com/NaveenJosephv" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-slate-400 hover:text-indigo-500 transition-colors">
-            <FaTwitter size={24} />
-            <span className="font-medium text-base">X / Twitter</span>
-          </a>
+        {/* Bottom bar inside window */}
+        <div className="pt-4 border-t-2 border-black flex flex-wrap items-center justify-between text-xs font-mono text-slate-600 gap-2">
+          <span>© {currentYear} Naveen Joseph. All rights reserved.</span>
+          <span>Creatively done by Naveen ❤️</span>
         </div>
-        
-        <div className="text-sm text-slate-500">
-          <p>© {new Date().getFullYear()} Naveen Joseph. All rights reserved.</p>
-          <p className="mt-1">Designed with clean aesthetics in mind.</p>
-        </div>
-      </div>
+      </OSWindow>
     </footer>
   );
 }
