@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { SiLinktree } from 'react-icons/si';
 import OSWindow from './OSWindow';
 
 export default function Hero() {
@@ -65,25 +66,43 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Hero Profile Image Card */}
+          {/* Animated Hero Profile Image Card */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-sm">
-              {/* Decorative accent element behind frame */}
-              <div className="absolute -top-3 -right-3 w-12 h-12 bg-[#3f4d34] border-2 border-black -z-10"></div>
-              
-              <div className="border-2 border-black hard-shadow bg-white p-3 relative">
-                <img 
-                  src="/Me.jpeg" 
-                  alt="Naveen Joseph" 
-                  className="w-full h-auto aspect-[4/5] object-cover object-top border-2 border-black"
-                />
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: [0, -8, 0] }}
+              transition={{ 
+                opacity: { duration: 0.6 },
+                y: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' }
+              }}
+              whileHover={{ scale: 1.03, rotate: 1.5 }}
+              className="relative w-full max-w-sm cursor-pointer group select-none"
+            >
+              {/* Decorative retro accent blocks behind frame */}
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-[#3f4d34] border-2 border-black -z-10 group-hover:bg-yellow-300 transition-colors duration-300"></div>
+              <div className="absolute -bottom-3 -left-3 w-12 h-12 bg-yellow-300 border-2 border-black -z-10 group-hover:bg-[#3f4d34] transition-colors duration-300"></div>
+
+              <div className="border-2 border-black hard-shadow-lg bg-white p-3 relative overflow-hidden">
+                <div className="relative overflow-hidden border-2 border-black">
+                  <img 
+                    src="/Me.jpeg" 
+                    alt="Naveen Joseph" 
+                    className="w-full h-auto aspect-[4/5] object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+
+                  {/* Retro Status Badge */}
+                  <div className="absolute top-2 right-2 bg-black/85 text-white text-[10px] font-mono px-2 py-0.5 border border-white flex items-center gap-1.5 backdrop-blur-xs shadow-md">
+                    <span className="w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
+                    <span className="font-bold">SYS: ACTIVE</span>
+                  </div>
+                </div>
                 
                 <div className="mt-3 pt-2 border-t border-black flex justify-between items-center font-mono text-xs">
-                  <span className="font-bold">NAVEEN_J.JPG</span>
-                  <span className="bg-amber-100 border border-black px-1.5 py-0.5">DEV_ID: #2255</span>
+                  <span className="font-bold text-slate-900">NAVEEN_J.JPG</span>
+                  <span className="bg-amber-100 border border-black px-1.5 py-0.5 font-bold text-black">DEV_ID: #2255</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
         </div>
@@ -91,3 +110,4 @@ export default function Hero() {
     </section>
   );
 }
+

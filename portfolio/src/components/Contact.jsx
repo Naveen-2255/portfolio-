@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SiLinktree } from 'react-icons/si';
 import OSWindow from './OSWindow';
 
 export default function Contact() {
@@ -45,8 +46,8 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Yellow Sticky Note pinned to screen (Left Column) */}
-          <div className="lg:col-span-5">
+          {/* Yellow Sticky Note + Linktree QR Card (Left Column) */}
+          <div className="lg:col-span-5 space-y-6">
             <div className="bg-[#fef08a] border-2 border-black hard-shadow p-6 sm:p-8 font-sans rotate-[-1.5deg] relative">
               {/* Tape Graphic */}
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-amber-200/80 border border-black/40 rotate-1 opacity-90 shadow-xs"></div>
@@ -58,6 +59,34 @@ export default function Contact() {
                 — NJ
               </p>
             </div>
+
+            {/* Retro Linktree QR Code Box */}
+            <a 
+              href="https://linktr.ee/naveenjosephv" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block border-2 border-black hard-shadow bg-white p-5 font-mono text-center space-y-4 hover:bg-slate-50 transition-colors group cursor-pointer"
+              title="Click to visit Linktree"
+            >
+              <div className="flex items-center justify-center gap-2 border-b-2 border-black pb-2 text-xs font-bold text-black uppercase">
+                <SiLinktree className="text-[#34cb4f]" size={18} />
+                <span>LINKTREE QR CODE</span>
+              </div>
+              
+              <div className="bg-[#f8f5f2] border-2 border-black p-3 inline-block hard-shadow-sm group-hover:border-black transition-all">
+                <img 
+                  src="/qr.png" 
+                  alt="Naveen Joseph Linktree QR Code" 
+                  className="w-48 h-48 sm:w-52 sm:h-52 object-contain mx-auto border-2 border-black bg-white p-2 group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+
+              <div className="pt-1">
+                <span className="inline-block bg-[#3f4d34] group-hover:bg-[#2e3927] text-white border border-black px-3 py-1.5 text-xs font-bold hard-shadow-sm transition-colors">
+                  Click or scan to open Linktree ↗
+                </span>
+              </div>
+            </a>
           </div>
 
           {/* Contact Details & Form (Right Column) */}
@@ -140,6 +169,15 @@ export default function Contact() {
 
                   <div className="flex justify-between items-center pt-2">
                     <div className="flex gap-2">
+                      <a 
+                        href="https://linktr.ee/naveenjosephv" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="p-2 border border-black bg-emerald-100 hover:bg-emerald-200 text-black font-bold"
+                        title="Linktree"
+                      >
+                        <SiLinktree size={14} />
+                      </a>
                       <a 
                         href="https://github.com/Naveen-2255" 
                         target="_blank" 

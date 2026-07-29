@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mail, FileText } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SiLinktree } from 'react-icons/si';
 import OSWindow from './OSWindow';
 
 export default function Footer() {
@@ -34,7 +35,6 @@ export default function Footer() {
               <li><a href="#hero" className="hover:underline">Home</a></li>
               <li><a href="#about" className="hover:underline">About</a></li>
               <li><a href="#projects" className="hover:underline">Projects</a></li>
-              <li><a href="#experience" className="hover:underline">Experience</a></li>
               <li><a href="#github" className="hover:underline">GitHub</a></li>
               <li><a href="#contact" className="hover:underline">Contact</a></li>
             </ul>
@@ -52,13 +52,16 @@ export default function Footer() {
             <div>
               <h4 className="font-bold text-black uppercase border-b border-black pb-1 mb-2">CONNECT</h4>
               <div className="flex gap-2">
-                <a href="https://github.com/Naveen-2255" target="_blank" rel="noreferrer" className="p-2 border border-black bg-white hover:bg-slate-100">
+                <a href="https://linktr.ee/naveenjosephv" target="_blank" rel="noreferrer" className="p-2 border border-black bg-emerald-100 hover:bg-emerald-200 text-black font-bold" title="Linktree">
+                  <SiLinktree size={16} />
+                </a>
+                <a href="https://github.com/Naveen-2255" target="_blank" rel="noreferrer" className="p-2 border border-black bg-white hover:bg-slate-100" title="GitHub">
                   <FaGithub size={16} />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 border border-black bg-white hover:bg-slate-100">
+                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 border border-black bg-white hover:bg-slate-100" title="LinkedIn">
                   <FaLinkedin size={16} />
                 </a>
-                <a href="mailto:naveenjosephvadakkel@gmail.com" className="p-2 border border-black bg-white hover:bg-slate-100">
+                <a href="mailto:naveenjosephvadakkel@gmail.com" className="p-2 border border-black bg-white hover:bg-slate-100" title="Email">
                   <Mail size={16} />
                 </a>
               </div>
