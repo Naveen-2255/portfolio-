@@ -63,4 +63,29 @@
   animation: crt-flicker 0.15s infinite;
 }
 
+/* Ensure GitHub Activity calendar SVG expands to fill container width on desktop */
+.github-calendar-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.github-calendar-wrapper article,
+.github-calendar-wrapper .react-github-calendar__chart {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.github-calendar-wrapper article svg,
+.github-calendar-wrapper .react-github-calendar__chart svg {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+}
+
 

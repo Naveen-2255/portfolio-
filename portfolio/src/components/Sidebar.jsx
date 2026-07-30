@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, User, Folder, Mail, FileText, RotateCcw } from 'lucide-react';
+import { Home, User, Cpu, Folder, Mail, FileText, RotateCcw } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 
 export default function Sidebar({ onReboot }) {
@@ -8,6 +8,7 @@ export default function Sidebar({ onReboot }) {
   const navItems = [
     { id: 'hero', label: 'Home', icon: Home },
     { id: 'about', label: 'About', icon: User },
+    { id: 'skills', label: 'Skills', icon: Cpu },
     { id: 'projects', label: 'Projects', icon: Folder },
     { id: 'github', label: 'GitHub', icon: FaGithub },
     { id: 'contact', label: 'Contact', icon: Mail },

@@ -116,18 +116,20 @@ export default function GitHubActivity() {
         </div>
 
         {/* Calendar Section with 2 Months (Mobile) / 4 Months (Desktop) */}
-        <div className="border-2 border-black hard-shadow bg-white p-4 sm:p-6 flex flex-col items-center justify-center">
-          <div className="w-full flex justify-center py-2 font-mono overflow-x-auto">
-            <GitHubCalendar 
-              username="Naveen-2255"
-              transformData={transformData}
-              theme={oliveTheme}
-              blockSize={12}
-              blockMargin={4}
-              fontSize={12}
-            />
+        <div className="border-2 border-black hard-shadow bg-white p-4 sm:p-6 flex flex-col items-center justify-center overflow-hidden">
+          <div className="w-full flex justify-center items-center font-mono github-calendar-wrapper py-4 px-2">
+            <div className="w-full max-w-full flex justify-center transform md:scale-125 origin-center my-4">
+              <GitHubCalendar 
+                username="Naveen-2255"
+                transformData={transformData}
+                theme={oliveTheme}
+                blockSize={monthsToShow === 2 ? 14 : 20}
+                blockMargin={monthsToShow === 2 ? 4 : 6}
+                fontSize={12}
+              />
+            </div>
           </div>
-          <p className="text-[11px] font-mono text-slate-500 mt-2 text-center">
+          <p className="text-[11px] font-mono text-slate-500 mt-4 text-center font-semibold">
             Showing activity for the past {monthsToShow} months ({monthsToShow === 2 ? 'Mobile View' : 'Desktop View'})
           </p>
         </div>

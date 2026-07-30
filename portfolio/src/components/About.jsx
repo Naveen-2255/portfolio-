@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap, MapPin, Mail, ExternalLink } from 'lucide-react';
+import { GraduationCap, MapPin, Mail, Phone, ExternalLink } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import OSWindow from './OSWindow';
 
@@ -40,6 +40,21 @@ export default function About() {
                 <span className="text-[11px] text-slate-500 font-mono">Sep 2023 - Present</span>
               </div>
             </div>
+
+            {/* Phone Quick Link Card */}
+            <a 
+              href="tel:+919895780376"
+              className="border-2 border-black hard-shadow-sm bg-[#f8f5f2] p-3 flex items-start gap-3 hover:bg-white transition-colors cursor-pointer group"
+              title="Call Phone Number"
+            >
+              <div className="p-2 bg-[#3f4d34] text-white border border-black shrink-0 group-hover:bg-[#2e3927] transition-colors">
+                <Phone size={18} />
+              </div>
+              <div>
+                <h3 className="font-bold text-black text-sm group-hover:underline">+91 9895780376</h3>
+                <p className="text-slate-700 text-xs font-mono">Click to call phone ↗</p>
+              </div>
+            </a>
 
             {/* Location Card */}
             <div className="border-2 border-black hard-shadow-sm bg-[#f8f5f2] p-3 flex items-start gap-3">

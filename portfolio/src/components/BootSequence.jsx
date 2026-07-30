@@ -2,41 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export default function BootSequence({ onComplete }) {
-  const [memory, setMemory] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [lines, setLines] = useState([]);
 
-  // Memory counter effect
+  // Windows XP / Retro style loading progress effect
   useEffect(() => {
-    const memoryInterval = setInterval(() => {
-      setMemory((prev) => {
-        if (prev >= 65536) {
-          clearInterval(memoryInterval);
-          return 65536;
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
         }
-        return prev + 4096;
+        return prev + 2;
       });
-    }, 40);
+    }, 80);
 
-    return () => clearInterval(memoryInterval);
+    return () => clearInterval(progressInterval);
   }, []);
 
-  // Sequence of boot logs
+  // Simplified sequence of essential boot logs
   useEffect(() => {
     const bootLogs = [
-      { delay: 200, text: 'AWARD MODULAR BIOS v4.51PG, An Energy Star Ally' },
-      { delay: 400, text: 'Copyright (C) 1984-2026, Retro Portfolio Systems Inc.' },
-      { delay: 600, text: 'CPU: INTEL PENTIUM II @ 400MHz' },
-      { delay: 900, text: 'Memory Test : 640K OK  65536K EXTENDED OK' },
-      { delay: 1100, text: '' },
-      { delay: 1300, text: 'Detecting Primary Master   ... NAVEEN_OS_2.0 [PORTFOLIO HD]' },
-      { delay: 1500, text: 'Detecting Primary Slave    ... SKILLS_&_PROJECTS.SYS [READY]' },
-      { delay: 1700, text: 'Detecting Secondary Master ... AI_CORE_MODULE [LOADED]' },
-      { delay: 1900, text: '' },
-      { delay: 2100, text: 'Initializing System Drivers .......................... [OK]' },
-      { delay: 2300, text: 'Mounting Components (Hero, About, Projects, Contact) . [OK]' },
-      { delay: 2500, text: 'Establishing Retro Connection ........................ [OK]' },
-      { delay: 2700, text: '' },
-      { delay: 2900, text: 'SYSTEM READY > BOOTING NAVEEN JOSEPH PORTFOLIO OS...' },
+      { delay: 300, text: 'AWARD MODULAR BIOS v4.51PG — PORTFOLIO OS v2.0' },
+      { delay: 1000, text: 'CPU: INTEL PENTIUM II @ 400MHz | SYSTEM RAM: 65536K OK' },
+      { delay: 1800, text: 'Loading System Drivers & Core Services .................. [OK]' },
+      { delay: 2600, text: 'Mounting Desktop Components & Linktree Assets ............ [OK]' },
+      { delay: 3400, text: 'WELCOME > INITIALIZING WINDOWS DESKTOP...' },
     ];
 
     const timeouts = bootLogs.map(({ delay, text }) =>
@@ -45,10 +36,9 @@ export default function BootSequence({ onComplete }) {
       }, delay)
     );
 
-    // Auto complete after ~3.4s
     const finishTimeout = setTimeout(() => {
       if (onComplete) onComplete();
-    }, 3400);
+    }, 4400);
 
     return () => {
       timeouts.forEach(clearTimeout);
@@ -56,63 +46,52 @@ export default function BootSequence({ onComplete }) {
     };
   }, [onComplete]);
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
-        if (onComplete) onComplete();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onComplete]);
-
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, scaleY: 0.005, filter: 'brightness(3)' }}
-      transition={{ duration: 0.4, ease: 'easeInOut' }}
-      className="fixed inset-0 z-50 bg-[#080c08] text-[#33ff33] font-mono select-none overflow-hidden flex flex-col justify-between p-4 sm:p-8 crt-overlay crt-flicker"
-      onClick={onComplete}
+      exit={{ opacity: 0, scale: 1.04, filter: 'blur(8px) brightness(1.2)' }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-0 z-50 bg-[#f8f5f2] text-[#1c3f20] font-mono select-none overflow-hidden flex flex-col justify-between p-6 sm:p-12 crt-overlay"
     >
       {/* Header BIOS info */}
-      <div className="space-y-4 max-w-4xl mx-auto w-full text-xs sm:text-sm leading-relaxed">
-        <div className="flex justify-between items-start border-b border-[#33ff33]/40 pb-3">
+      <div className="space-y-6 max-w-4xl mx-auto w-full text-xs sm:text-sm leading-relaxed">
+        <div className="flex justify-between items-start border-b-2 border-black pb-4">
           <div>
-            <p className="font-bold tracking-widest text-[#66ff66]">RETRO-BIOS (C) 1998-2026</p>
-            <p className="text-[#22aa22]">Naveen Joseph System Architecture v2.0</p>
+            <p className="font-bold tracking-widest text-black text-sm sm:text-base">RETRO-BIOS (C) 1998-2026</p>
+            <p className="text-[#3f4d34] font-semibold text-xs sm:text-sm">Naveen Joseph System Architecture v2.0</p>
           </div>
-          <div className="text-right border border-[#33ff33] px-2 py-1 bg-[#33ff33]/10 font-bold text-[10px] sm:text-xs">
+          <div className="text-right border-2 border-black px-3 py-1 bg-[#3f4d34] text-yellow-300 font-bold text-xs hard-shadow-sm">
             [ENERGY STAR]
           </div>
         </div>
 
         {/* Terminal output */}
-        <div className="space-y-1 mt-4">
+        <div className="space-y-3 mt-6 font-mono text-xs sm:text-sm font-semibold">
           {lines.map((line, idx) => (
-            <div key={idx} className="flex items-center gap-2">
-              <span className="text-[#22aa22]">&gt;</span>
+            <div key={idx} className="flex items-center gap-2 text-black">
+              <span className="text-[#3f4d34] font-bold">&gt;</span>
               <span>{line}</span>
             </div>
           ))}
 
-          {lines.length < 14 && (
+          {lines.length < 5 && (
             <div className="flex items-center gap-2">
-              <span className="text-[#22aa22]">&gt;</span>
-              <span className="animate-pulse bg-[#33ff33] text-black px-1 font-bold">_</span>
+              <span className="text-[#3f4d34] font-bold">&gt;</span>
+              <span className="animate-pulse bg-[#3f4d34] text-yellow-300 px-1 font-bold">_</span>
             </div>
           )}
         </div>
 
         {/* ASCII Banner */}
-        {lines.length >= 12 && (
+        {lines.length >= 4 && (
           <motion.div 
             initial={{ opacity: 0, y: 5 }} 
             animate={{ opacity: 1, y: 0 }}
-            className="pt-4 text-[#88ff88] text-[9px] sm:text-xs leading-none font-bold overflow-x-auto whitespace-pre"
+            className="pt-6 text-[#3f4d34] text-[9px] sm:text-xs leading-none font-bold overflow-x-auto whitespace-pre border-t border-black/20"
           >
 {`
   _  _   _   _  _ ___ ___ _  _   _  ___  ___ ___ ___  _  _ 
- | \| | /_\ | || | __| __| \| | | |/ _ \/ __| __| _ \| || |
+ | \| | /_\ | || | __| __| \| | |/ _ \/ __| __| _ \| || |
  | .\` |/ _ \| \/ | _|| _|| .\` |_| | (_) \__ \ _||  _/| __ |
  |_|\_/_/ \_\ \__/|___|___|_|\_\___/ \___/|___/___|_|  |_||_|
 `}
@@ -120,22 +99,23 @@ export default function BootSequence({ onComplete }) {
         )}
       </div>
 
-      {/* Footer Controls & Skip prompt */}
-      <div className="max-w-4xl mx-auto w-full pt-4 border-t border-[#33ff33]/30 flex flex-wrap justify-between items-center text-xs text-[#22aa22]">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#33ff33] animate-ping" />
-          <span>SYSTEM BOOTING... ({memory}KB OK)</span>
+      {/* Windows XP Progress Bar & System Status */}
+      <div className="max-w-4xl mx-auto w-full pt-4 border-t-2 border-black space-y-3 font-mono text-xs font-bold text-[#3f4d34]">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#3f4d34] animate-ping" />
+            <span>STARTING WINDOWS DESKTOP...</span>
+          </div>
+          <span>{progress}%</span>
         </div>
 
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            if (onComplete) onComplete();
-          }}
-          className="px-3 py-1 bg-[#33ff33] text-black font-bold border border-black hover:bg-[#66ff66] transition-colors cursor-pointer text-xs"
-        >
-          [ ESC / CLICK TO SKIP ]
-        </button>
+        {/* XP Style Segmented Progress Bar */}
+        <div className="w-full bg-stone-200 border-2 border-black h-5 p-0.5 relative overflow-hidden flex gap-1 hard-shadow-sm">
+          <div 
+            className="bg-[#3f4d34] h-full transition-all duration-150 ease-out" 
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       </div>
     </motion.div>
   );

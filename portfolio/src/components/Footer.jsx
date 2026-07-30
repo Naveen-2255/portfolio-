@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, FileText } from 'lucide-react';
+import { Mail, Phone, FileText } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiLinktree } from 'react-icons/si';
 import OSWindow from './OSWindow';
@@ -61,8 +61,11 @@ export default function Footer() {
                 <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 border border-black bg-white hover:bg-slate-100" title="LinkedIn">
                   <FaLinkedin size={16} />
                 </a>
-                <a href="mailto:naveenjosephvadakkel@gmail.com" className="p-2 border border-black bg-white hover:bg-slate-100" title="Email">
+                <a href="mailto:naveenjosephvadakkel@gmail.com" className="p-2 border border-black bg-white hover:bg-slate-100" title="Send Email">
                   <Mail size={16} />
+                </a>
+                <a href="tel:+919895780376" className="p-2 border border-black bg-white hover:bg-slate-100" title="Call Phone">
+                  <Phone size={16} />
                 </a>
               </div>
             </div>
@@ -73,7 +76,12 @@ export default function Footer() {
         {/* Bottom bar inside window */}
         <div className="pt-4 border-t-2 border-black flex flex-wrap items-center justify-between text-xs font-mono text-slate-600 gap-2">
           <span>© {currentYear} Naveen Joseph. All rights reserved.</span>
-          <span>Creatively done by Naveen ❤️</span>
+          <div className="flex items-center gap-3">
+            <span className="font-semibold text-slate-800">Architected & Developed by Naveen Joseph</span>
+            <div className="bg-[#3f4d34] text-yellow-300 font-mono text-xs px-2.5 py-1 border border-black hard-shadow-sm font-bold">
+              C:\&gt;
+            </div>
+          </div>
         </div>
       </OSWindow>
     </footer>
