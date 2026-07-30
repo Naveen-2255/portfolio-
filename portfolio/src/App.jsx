@@ -23,27 +23,29 @@ function App() {
         {booting ? (
           <BootSequence key="boot-screen" onComplete={() => setBooting(false)} />
         ) : (
-          <motion.div
-            key="portfolio-content"
-            initial={{ opacity: 0, y: 35, scale: 0.94, filter: 'blur(8px)' }}
-            animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="min-h-screen bg-[#f8f5f2]"
-          >
-            {/* Responsive Retro OS Navigation */}
+          <React.Fragment key="portfolio-wrapper">
+            {/* Responsive Retro OS Navigation - Pinned to viewport window */}
             <Sidebar onReboot={handleReboot} />
 
-            {/* Main Content Area - Scrollable on right for desktop */}
-            <main className="md:ml-64 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-5xl mx-auto space-y-8 pb-20 md:pb-8">
-              <Hero />
-              <About />
-              <Skills />
-              <Projects />
-              <GitHubActivity />
-              <Contact />
-              <Footer />
-            </main>
-          </motion.div>
+            <motion.div
+              key="portfolio-content"
+              initial={{ opacity: 0, y: 25, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="min-h-screen bg-[#f8f5f2]"
+            >
+              {/* Main Content Area - Scrollable on right for desktop */}
+              <main className="md:ml-64 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-5xl mx-auto space-y-8 pb-20 md:pb-8">
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <GitHubActivity />
+                <Contact />
+                <Footer />
+              </main>
+            </motion.div>
+          </React.Fragment>
         )}
       </AnimatePresence>
     </div>
